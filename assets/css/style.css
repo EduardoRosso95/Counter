@@ -1,0 +1,47 @@
+
+/*Animazione sfondo scorrimento infinito*/
+@keyframes scrollBackground {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+
+/*Inizio stile body*/
+body {
+
+  overflow: hidden;
+  height: 100vh;
+  background-size: cover;
+  background-image: url('../img/Illustration2.jpg');
+  animation: scrollBackground 100s linear infinite; 
+
+}
+
+/*Inizio stile header*/
+
+header{
+  height: 20vh;
+}
+
+.img-header{
+  height: 100%;
+}
+
+/*Inizio stile main*/
+main{
+  height: 60vh;
+}
+
+/*Inizio stile footer*/
+footer{
+  height: 20vh;
+
+  background-image: url('../img/grassgif.gif');
+  background-size: auto 100%;
+
+
+}
