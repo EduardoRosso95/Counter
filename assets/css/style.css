@@ -1,4 +1,3 @@
-
 /*Animazione sfondo scorrimento infinito*/
 @keyframes scrollBackground {
   0% {
@@ -8,40 +7,71 @@
     background-position: 100% 0;
   }
 }
-
+/*Stili elementi generici*/
+p {
+  font-family: Comic Sans MS;
+}
 
 /*Inizio stile body*/
 body {
-
-  overflow: hidden;
-  height: 100vh;
   background-size: cover;
-  background-image: url('../img/Illustration2.jpg');
-  animation: scrollBackground 100s linear infinite; 
-
+  background-image: url("../img/background_body.jpg");
+  animation: scrollBackground 150s linear infinite;
 }
 
 /*Inizio stile header*/
-
-header{
+header {
   height: 20vh;
 }
 
-.img-header{
+.img-header {
   height: 100%;
 }
 
 /*Inizio stile main*/
-main{
-  height: 60vh;
+main {
+  min-height: 60vh;
+}
+
+.container-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*Stile contatore*/
+.display-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../img/display_counter.gif");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.body-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-btn-counter {
+  border: 2px solid black;
 }
 
 /*Inizio stile footer*/
-footer{
+footer {
   height: 20vh;
-
-  background-image: url('../img/grassgif.gif');
+  background-image: url("../img/background_footer.gif");
   background-size: auto 100%;
-
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.img-footer {
+  height: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */
