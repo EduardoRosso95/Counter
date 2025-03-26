@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Contatore | Eduardo Rosso</title>
-    <link rel="icon" href="./assets/img/snail.gif" type="image/gif" />
+   
 
     <!-- Inserisco gli Open Graph per Meta e linkedin-->
     <meta property="og:title" content="Lumaca Runner - Contatore Eduardo Rosso">
@@ -51,36 +51,24 @@
 
 <!--Inizio sezione main-->
     <main>
-        <div class="container-fluid h-100 container-main">
-
-            <!--Creo il contatore-->
-            <div class="col-md-3 w-100 h-100 pt-5">
+        <div class="container-fluid h-100 container-main" id="containermain">
+            <!--Creo il contatore: tutti gli elementi di interazione del contatore sono stati aggiunti tramite manipolazione DOM-->
+            <div class="col-md-3 w-100 h-100 pt-5" id="counter-container">
                 <!--Display del contatore-->
-                <div class="display-counter p-3"> 
-                    <p class="display-1" id="displaycounter">0</p>
+                <div class="display-counter p-3" id="displaycounter-container">    
                 </div>
                 <!--Corpo del contatore-->
-                <div class="body-counter p-3 my-5 h-50"> 
-                    <button class="btn btn-lg px-2">
-                        <img src="./assets/img/bnt_decrement_counter.gif" class="img-btn-counter"  alt="Icona" width="100" height="100" id="btndecrement">
-                    </button>
-                    <button class="btn btn-lg px-2 ">
-                        <img src="./assets/img/btn_increment_counter.gif" class="img-btn-counter"  alt="Icona" width="100" height="100" id="btnincrement" >
-                    </button>
-                </div>
-                
+                <div class="body-counter p-3 my-5 h-50" id="bodycounter-container">                     
+                </div>                
             </div>
-
         </div>
-
     </main>
 <!--Fine sezione main-->
 
-    <footer>
-        
-        <img src="./assets/img/snail.gif" class="img-footer pb-5" alt="Immagine header" id="personagesnail">
-        
+<!--Inizio sezione footer: gli elementi all'interno del footer sono stati aggiunti tramite manipolazione del DOM-->
+    <footer>              
     </footer>
+<!--Fine sezione footer-->    
 
     <!--Bootstrap-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
