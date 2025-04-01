@@ -15,6 +15,7 @@ const incrementbutton_image = document.createElement("img");
 //Personaggio
 const personagesnail = document.createElement("img");
 
+
 //POSIZIONAMENTO DEGLI ELEMENTI CREATI
 //Posiziono all'interno del display del contatore
 displaycounter_container.appendChild(displaycounter);
