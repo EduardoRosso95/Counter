@@ -4,6 +4,9 @@ const displaycounter_container = document.querySelector("#displaycounter-contain
 const bodycounter_container = document.querySelector("#bodycounter-container");
 const footer = document.querySelector("footer");
 
+//Variabile attraverso il quale tengo il conteggio del contatore
+let i = 0;
+
 //CREAZIONE ELEMENTI HTML
 //Creo elementi html attraverso la manipolazione del DOM
 //Contatore
@@ -29,27 +32,18 @@ footer.appendChild(personagesnail);
 
 //MODIFICHE DEGLI ELEMENTI CREATI
 //display del contatore
-displaycounter.classList.add("display-1", "fw-bold");
+modifyElement(displaycounter,"display-1 fw-bold",null,"Contatore");
 displaycounter.textContent = 0;
 //corpo del contatore
-//Bottone decremento
-decrementbutton.classList.add("btn", "btn-lg", "px-2");
-decrementbutton_image.src = "./assets/img/btn_decrement_counter.gif";
-decrementbutton_image.classList.add("img-btn-counter");
-decrementbutton_image.alt = "Decrement button";
-decrementbutton_image.width = 100;
-decrementbutton_image.height = 100;
-//Bottone incremento
-incrementbutton.classList.add("btn", "btn-lg", "px-2");
-incrementbutton_image.src = "./assets/img/btn_increment_counter.gif";
-incrementbutton_image.classList.add("img-btn-counter");
-incrementbutton_image.alt = "Increment button";
-incrementbutton_image.width = 100;
-incrementbutton_image.height = 100;
-//Personaggio
-personagesnail.classList.add("img-footer", "pb-5");
-personagesnail.alt = "Personaggio immagine footer";
-personagesnail.src = "./assets/img/snail.gif";
+//bottone decremento
+modifyElement(decrementbutton,"btn btn-lg px-2"); 
+modifyElement(decrementbutton_image,"img-btn-counter","./assets/img/btn_decrement_counter.gif","Decrement button",100,100); 
+//bottone incremento
+modifyElement(incrementbutton,"btn btn-lg px-2");
+modifyElement(incrementbutton_image,"img-btn-counter","./assets/img/btn_increment_counter.gif","Increment button",100,100);
+//personaggio
+modifyElement(personagesnail,"img-footer pb-5" ,"./assets/img/snail.gif","Personaggio immagine footer"); 
+
 
 //Definisco le direzione del personaggio caricando due immagini a specchio
 personagesnail.src = "./assets/img/snail_rotate.gif";
@@ -58,10 +52,24 @@ const pathreverse = personagesnail.src;
 personagesnail.src = "./assets/img/snail.gif";
 const path1 = personagesnail.src; 
 
-//Variabile attraverso il quale tengo il conteggio del contatore
-let i = 0;
+
  
 //INIZIO FUNZIONI
+
+//Funzione che mi permette di modificare gli attributi degli elementi creati in precedenza
+function modifyElement(element,classes,src,alt,width,height) {
+  
+  const classArray = classes.split(" ");
+  element.classList.add(...classArray); //uso lo spread operator per dividere e aggiungere le classi nel modo corretto
+  element.src = src;
+  element.alt = alt;
+
+  //Controllo se sono stati passati i parametri width e height così facendo non sono costretto a passarli sempre
+  if (width && height) {
+    element.width = width;
+    element.height = height;
+  }
+}
 
 //eventLister 'click' sul btnincrement per incrementare il contatore ed attivare l'animazione del personaggio e dello sfondo del footer
 incrementbutton.addEventListener("click", ((e) => { 
