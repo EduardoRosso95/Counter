@@ -1,4 +1,5 @@
 
+//VARIABILI E SELETTORI
 //Dichiarazione variabili, tramite i selettori
 const displaycounter_container = document.querySelector("#displaycounter-container");
 const bodycounter_container = document.querySelector("#bodycounter-container");
@@ -7,16 +8,20 @@ const footer = document.querySelector("footer");
 //Variabile attraverso il quale tengo il conteggio del contatore
 let i = 0;
 
-//CREAZIONE ELEMENTI HTML
-//Creo elementi html attraverso la manipolazione del DOM
-//Contatore
-const displaycounter = document.createElement("p");
-const decrementbutton = document.createElement("button");
-const incrementbutton = document.createElement("button");
-const decrementbutton_image = document.createElement("img");
-const incrementbutton_image = document.createElement("img");
+//CREAZIONE E MODIFICA ELEMENTI HTML
+//Creo e modifico elementi html attraverso la manipolazione del DOM
+//Display delContatore
+const displaycounter = createAndModifyElement("p","display-1 fw-bold",null,"Contatore");
+displaycounter.textContent = 0;
+//Corpo del contatore
+//bottone decremento
+const decrementbutton = createAndModifyElement("button","btn btn-lg px-2",null,"Decrement button");
+const decrementbutton_image = createAndModifyElement("img","img-btn-counter","./assets/img/btn_decrement_counter.gif","Decrement button",100,100, "decrement");
+//bottone incremento
+const incrementbutton = createAndModifyElement("button","btn btn-lg px-2",null,"Increment button");
+const incrementbutton_image = createAndModifyElement("img","img-btn-counter","./assets/img/btn_increment_counter.gif","Increment button",100,100, "increment");
 //Personaggio
-const personagesnail = document.createElement("img");
+const personagesnail = createAndModifyElement("img","img-footer pb-5" ,"./assets/img/snail.gif","Personaggio immagine footer");
 
 
 //POSIZIONAMENTO DEGLI ELEMENTI CREATI
@@ -30,24 +35,11 @@ incrementbutton.appendChild(incrementbutton_image);
 //Posiziono il personaggio all'interno del footer
 footer.appendChild(personagesnail);
 
-//MODIFICHE DEGLI ELEMENTI CREATI
-//display del contatore
-modifyElement(displaycounter,"display-1 fw-bold",null,"Contatore");
-displaycounter.textContent = 0;
-//corpo del contatore
-//bottone decremento
-modifyElement(decrementbutton,"btn btn-lg px-2"); 
-modifyElement(decrementbutton_image,"img-btn-counter","./assets/img/btn_decrement_counter.gif","Decrement button",100,100); 
-//bottone incremento
-modifyElement(incrementbutton,"btn btn-lg px-2");
-modifyElement(incrementbutton_image,"img-btn-counter","./assets/img/btn_increment_counter.gif","Increment button",100,100);
-//personaggio
-modifyElement(personagesnail,"img-footer pb-5" ,"./assets/img/snail.gif","Personaggio immagine footer"); 
 
-
-//Definisco le direzione del personaggio caricando due immagini a specchio
+//Definisco le direzione del personaggio caricando due immagini a specchio per il DOM
 personagesnail.src = "./assets/img/snail_rotate.gif";
 const pathreverse = personagesnail.src;
+
 //Riporto il personaggio alla posizione iniziale
 personagesnail.src = "./assets/img/snail.gif";
 const path1 = personagesnail.src; 
@@ -56,56 +48,75 @@ const path1 = personagesnail.src;
  
 //INIZIO FUNZIONI
 
-//Funzione che mi permette di modificare gli attributi degli elementi creati in precedenza
-function modifyElement(element,classes,src,alt,width,height) {
+//Funzione che mi permette di creare e modificare gli elementi della pagina
+function createAndModifyElement(tag,classes,src,alt,width,height,data_action) {
+  
+  const element = document.createElement(tag); //creo l'elemento html
   
   const classArray = classes.split(" ");
   element.classList.add(...classArray); //uso lo spread operator per dividere e aggiungere le classi nel modo corretto
-  element.src = src;
-  element.alt = alt;
+  if(src)
+    element.src = src;
+  if(alt)
+    element.alt = alt;
 
   //Controllo se sono stati passati i parametri width e height così facendo non sono costretto a passarli sempre
-  if (width && height) {
+  if (width) {
     element.width = width;
-    element.height = height;
   }
+  if (height) {
+    element.height = height; 
+  }
+  
+
+  if (data_action) {
+    element.setAttribute("data-action", data_action); //aggiungo l'attributo data-action se passato come parametro
+  }
+
+  return element; //restituisco l'elemento creato
 }
 
-//eventLister 'click' sul btnincrement per incrementare il contatore ed attivare l'animazione del personaggio e dello sfondo del footer
-incrementbutton.addEventListener("click", ((e) => { 
-  
-  //Richiamo la funzione animationFooter() che serve a spostare lo sfondo dietro al personaggio
-  animationFooter("+"); 
 
-  //Questo controllo mi permette di creare un'interazione dinamica sul personaggio.
-  if (personagesnail.src == path1){
+//Uso un event delegation per gestire il click su entrambi i bottoni di incremento e decremento
+bodycounter_container.addEventListener("click", (e) => {
+
+
+  //Controllo se l'elemento cliccato è il bottone di decremento o incremento
+  if (e.target.dataset.action === "increment") {
+
+    //Richiamo la funzione animationFooter() che serve a spostare lo sfondo dietro al personaggio
+    animationFooter("+"); 
+
+    //Questo controllo mi permette di creare un'interazione dinamica sul personaggio.
+    if (personagesnail.src == path1){
       personagesnail.src = "./assets/img/snail_alt.gif";
-  }else {
-      personagesnail.src = "./assets/img/snail.gif";
-  };
+    }else {
+      personagesnail.src = path1;
+    };
 
- //Incremento il contatore e lo visualizzo a schermo
- i++;
- displaycounter.textContent = i ;
+    //Incremento il contatore e lo visualizzo a schermo
+    i++;
+    displaycounter.textContent = i ;
 
-}));
+    
+  }else if (e.target.dataset.action === "decrement") {
 
-//eventLister 'click' sul btndecrement per decrementare il contatore ed attivare l'animazione del personaggio e dello sfondo del footer a specchio
-decrementbutton.addEventListener("click", ((e) => { 
+
+    animationFooter("-"); 
   
-  animationFooter("-"); //Richiamo la funzione animationFooter() passando '-' come valore  
+    if (personagesnail.src == pathreverse){
+      personagesnail.src = "./assets/img/snail_rotate_alt.gif";
+    }else {
+      personagesnail.src = pathreverse;
+    };
+
+    
+    i--;
+    displaycounter.textContent = i ;
   
-  if (personagesnail.src == pathreverse){
-    personagesnail.src = "./assets/img/snail_rotate_alt.gif";
-  }else {
-    personagesnail.src = "./assets/img/snail_rotate.gif";
-  };
+    }
 
-  //Decremento il contatore e lo visualizzo a schermo
-  i--;
-  displaycounter.textContent = i ;
-
-}));
+});
 
 
 
