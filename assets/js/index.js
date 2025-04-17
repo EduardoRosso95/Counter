@@ -146,3 +146,4 @@ function animationFooter (direction) {
     footer.style.backgroundPosition = `${x}px ${y}px`;  
 
 };
+
