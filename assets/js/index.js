@@ -8,6 +8,8 @@ const footer = document.querySelector("footer");
 //Variabile attraverso il quale tengo il conteggio del contatore
 let i = 0;
 
+
+
 //CREAZIONE E MODIFICA ELEMENTI HTML
 //Creo e modifico elementi html attraverso la manipolazione del DOM
 //Display delContatore
@@ -84,6 +86,8 @@ bodycounter_container.addEventListener("click", (e) => {
   //Controllo se l'elemento cliccato è il bottone di decremento o incremento
   if (e.target.dataset.action === "increment") {
 
+    playsound(); //Riproduco l'audio al click  
+
     //Richiamo la funzione animationFooter() che serve a spostare lo sfondo dietro al personaggio
     animationFooter("+"); 
 
@@ -101,7 +105,8 @@ bodycounter_container.addEventListener("click", (e) => {
     
   }else if (e.target.dataset.action === "decrement") {
 
-
+    
+    playsound(); 
     animationFooter("-"); 
   
     if (personagesnail.src == pathreverse){
@@ -147,3 +152,9 @@ function animationFooter (direction) {
 
 };
 
+//Funzione che riproduce l'audio del bottone
+function playsound() {
+  const audio = new Audio("./assets/audio/button-click.mp3");
+  audio.volume = 0.1; // volume da 0 a 1  
+  audio.play(); //Riproduco l'audio al click
+}
