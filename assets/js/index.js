@@ -154,7 +154,9 @@ function animationFooter (direction) {
 
 //Funzione che riproduce l'audio del bottone
 function playsound() {
+
   const audio = new Audio("./assets/audio/button-click.mp3");
-  audio.volume = 0.1; // volume da 0 a 1  
-  audio.play(); //Riproduco l'audio al click
+  audio.volume = 0.1;
+
+  audio.play();
 }
